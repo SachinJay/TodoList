@@ -9,9 +9,9 @@ import utils.JDBCUtils;
 
 public class UserDao
 {
-	public int registerUser(User user)
+	public int registerUser(User user) throws ClassNotFoundException
 	{
-		String insert_users_query = "INSERT INTO users (first_name, last_name, user_name, password)"
+		String insert_users_query = "INSERT INTO users (first_name, last_name, username, password)"
 				+ " VALUES (?, ?, ?, ?);";
 		int result = 0; 
 		
