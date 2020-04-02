@@ -6,6 +6,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
+import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
+
 //Class with some convenience methods
 
 public class JDBCUtils
@@ -19,15 +21,21 @@ public class JDBCUtils
 		Connection connection = null;
 		try
 		{
-			Class.forName("com.mysql.jdbc.Driver");
-			connection = DriverManager.getConnection(url, user, pass);
-		} catch (SQLException e)
-		{
-			e.printStackTrace();
-		} catch (ClassNotFoundException e)
-		{
-			e.printStackTrace();
+//			Class.forName("com.mysql.jdbc.Driver");
+//			connection = DriverManager.getConnection(url, user, pass);
+			
+			MysqlDataSource dataSource = new MysqlDataSource();
+			dataSource.setUser("root");
+			dataSource.setPassword("password");
+			dataSource.setServerName("myDBHost.example.org");
+			
+			connection = dataSource.getConnection();
+			
 		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		} 
 		return connection;
 	}
 

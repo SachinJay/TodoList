@@ -20,7 +20,7 @@ public class UserController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UserDao userDao; 
 	
-	public void initController()
+	public void init()
 	{
 		userDao = new UserDao(); 
 	}
