@@ -14,6 +14,12 @@ import utils.JDBCUtils;
 
 public class LoginDao
 {
+	/**
+	 * Queries DB to see if such a user exists, if so returns true, else false
+	 * @param log the login credentials
+	 * @return true if login credentials matches a user in the DB
+	 * @throws ClassNotFoundException
+	 */
 	public boolean login(Login log) throws ClassNotFoundException
 	{
 		Boolean isValidLogin = false;
