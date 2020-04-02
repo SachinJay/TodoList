@@ -64,19 +64,27 @@ public class UserController extends HttpServlet {
         user.setUserName(userName);
         user.setPassword(password);
         
-        int result = userDao.registerUser(user);
-        
-        //I.e. if all is good
-        if(result == 1)
-        {
-        	request.setAttribute("NOTIFICATION", "Successful registration");
-        }
-        
+		try
+		{
+			int result = userDao.registerUser(user);
+			//i.e. if all went well
+			if (result == 1)
+			{
+				request.setAttribute("NOTIFICATION", "Registration all good");
+			}
+
+		}
+		catch (Exception e)
+		{
+			System.out.println("Something went wrong with registration");
+			e.printStackTrace();
+		}
         RequestDispatcher dispatcher = request.getRequestDispatcher("register/register.jsp");
         try
 		{
 			dispatcher.forward(request, response);
-		} catch (ServletException e)
+		} 
+        catch (ServletException e)
 		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
